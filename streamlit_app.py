@@ -42,7 +42,8 @@ def main():
 
     # Execute the query
     if st.button('Submit data'):
-            run_query(query,0)
+        run_query(query,0)
+
 
 def Questions():
     st.title("Please answer the below questions :)")
