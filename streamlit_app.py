@@ -86,16 +86,15 @@ def Answers():
     st.title("Answers")
 
     if st.button('Refresh data'):
-        rows = run_query("SELECT PET , COUNT(1) NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
+        rows = run_query("SELECT PET , COUNT(1) AS NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
+
+        df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
 
         # Display the results in a Streamlit table
-        st.table(rows, columns = ['PET','NO_OF_PICKS'])
+        st.table(df)
         
-        chart_data = pd.DataFrame(rows,columns = ['PET','NO_OF_PICKS'])
+        st.bar_chart(df)
         
-        st.bar_chart(chart_data)
-        
-
         rows = run_query("SELECT * FROM ANSWERS;")
 
         # Display the results in a Streamlit table
