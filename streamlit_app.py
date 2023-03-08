@@ -12,7 +12,7 @@ def init_connection():
 conn = init_connection()
 
 #@st.cache_data(ttl=600)
-def run_query(query,expectResult==1):
+def run_query(query,expectResult=1):
     with conn.cursor() as cur:
         cur.execute(query)
         if expectResult != 0:
