@@ -34,17 +34,6 @@ def run_query(query,expectResult=1):
 def main():
     st.title("Power Hour 2023-03-08")
     
-    menu = ["Questions", "Answers"]
-
-    choice = st.sidebar.selectbox("Select a page", menu)
-
-    if choice == "Questions":
-        Questions()
-    elif choice == "Answers":
-        Answers()
-    else:
-        main()
-
     pets = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
 
