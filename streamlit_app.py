@@ -7,8 +7,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'No help, sorry',
-        'Report a bug': "bugs don't exist!",
+        'Get Help': 'www.NoHelpSorry.co.za',
+        'Report a bug': "www.BugsDontExistInMyCode.com",
         'About': "Chat GPT - Power Hour"
     }
 )
