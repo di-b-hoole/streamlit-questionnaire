@@ -1,4 +1,4 @@
-snowflake create question answer table with indentity id
+snowflake create table with indentity id and fav_pet string value
 
 streamlit drop down menu input
 
