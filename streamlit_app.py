@@ -1,6 +1,5 @@
 import streamlit as st
 import snowflake.connector
-import SessionState
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
@@ -65,13 +64,17 @@ def page2():
     st.title("Page 2")
     st.write("This is the second page of my app.")
 
-    session_state = SessionState.get(user_id=None)
+    with st.form("my_form"):
+        st.write("Inside the form")
+        slider_val = st.slider("Form slider")
+        checkbox_val = st.checkbox("Form checkbox")
 
-    if session_state.user_id is None:
-        session_state.user_id = st.session_state.session_id
+        # Every form must have a submit button.
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.write("slider", slider_val, "checkbox", checkbox_val)
 
-    # Display the user ID
-    st.write(f"Your user ID is: {session_state.user_id}")
+        st.write("Outside the form")
 
 if __name__ == "__main__":
     main()
