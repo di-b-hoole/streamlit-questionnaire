@@ -41,10 +41,17 @@ def home():
     selected_option = st.selectbox("Select an option", options)
 
     # Define the SQL query and parameters
-    query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal',{st.session_state.selected_option})"
+    query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal',{selected_option})"
+
 
     # Execute the query
-    cursor.execute(query)
+    cursor = conn.cursor()
+    cursor.execute(query, params)
+    conn.commit()
+
+    # Close the connection
+    conn.close()
+
 
 def Answers():
     st.title("Answers")
