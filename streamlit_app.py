@@ -98,10 +98,10 @@ def Answers():
         
         st.bar_chart(df)
         
-        rows = run_query("SELECT * FROM ANSWERS;", columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
+        rows = run_query("SELECT * FROM ANSWERS;")
 
         # Display the results in a Streamlit table
-        st.table(rows)
+        st.table(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
 
 def home():
     st.title("Welcome to my app!")
