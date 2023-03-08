@@ -22,7 +22,7 @@ def run_query(query,expectResult=1):
 def main():
 
     # Define your menu options here
-    menu = ["Home", "Answers", "Page 2"]
+    menu = ["Home", "Answers", "Page 2", "Page 3"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
 
@@ -32,6 +32,8 @@ def main():
         Answers()
     elif choice == "Page 2":
         page2()
+    elif choice == "Page 3":
+        page3()
 
 def home():
     st.title("Welcome to my app!")
@@ -70,7 +72,11 @@ def page2():
         st.write("Inside the form")
         name_val = st.text_input("Name:")
         age_val = st.slider('How old are you?', 0, 130, 25)
-        pets_val = st.number_input('How many pets do you have')
+        Dog_val = st.number_input('How many Dogs do you have')
+        Cat_val = st.number_input('How many Cats do you have')
+        Bird_val = st.number_input('How many Birds do you have')
+        Fish_val = st.number_input('How many Fish do you have')
+        Reptile_val = st.number_input('How many Reptiles do you have')
         gender_val = st.selectbox('Gender:',genders)
         
         if gender_val == 'Other':
@@ -83,6 +89,25 @@ def page2():
         st.write(name_val, age_val,pets_val, gender_val,gender_val_other)
 
     st.write("Outside the form")
+
+def page3():
+    st.title("Page 3")
+
+    genders = ['Male', 'Female', 'Rather not say', 'Other']
+
+    name_val = st.text_input("Name:")
+    age_val = st.slider('How old are you?', 0, 130, 25)
+    Dog_val = st.number_input('How many Dogs do you have')
+    Cat_val = st.number_input('How many Cats do you have')
+    Bird_val = st.number_input('How many Birds do you have')
+    Fish_val = st.number_input('How many Fish do you have')
+    Reptile_val = st.number_input('How many Reptiles do you have')
+    gender_val = st.selectbox('Gender:',genders)
+        
+    if gender_val == 'Other':
+        gender_val_other = st.text_input("Preferred Gender:")  
+
+    st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other)
 
 if __name__ == "__main__":
     main()
