@@ -25,7 +25,7 @@ def main():
     elif choice == "Page 2":
         page2()
 
-    rows = run_query("SELECT TOP 500 * FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION;")
+    rows = run_query("SELECT TOP 5 * FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION;")
 
     # Display the results in a Streamlit table
     st.table(rows)
