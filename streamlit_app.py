@@ -92,16 +92,17 @@ def Answers():
 
         fav_pets_df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
         fav_pets_df = fav_pets_df.set_index('PET')
-        st.dataframe(fav_pets_df)
+
         # Display the results in a Streamlit table
         st.table(fav_pets_df)
         
+        # Display the results in a Streamlit bar chart
         st.bar_chart(fav_pets_df)
         
-        rows = run_query("SELECT * FROM ANSWERS;")
+        rows = run_query("SELECT ID,NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER FROM ANSWERS;")
         
         answers_df = pd.DataFrame(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
-        answers_df = answers_df.reset_index(drop=True,inplace = True)
+
         # Display the results in a Streamlit table
         st.table(answers_df)
 
