@@ -43,10 +43,8 @@ def home():
     # Define the SQL query and parameters
     query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal','{selected_option}')"
 
-
     # Execute the query
-    cursor = conn.cursor()
-    cursor.execute(query)
+    run_query(query)
     conn.commit()
 
 
