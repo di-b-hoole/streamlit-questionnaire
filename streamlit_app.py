@@ -23,7 +23,7 @@ def init_connection():
 
 conn = init_connection()
 
-@st.cache_data(ttl=600)
+#@st.cache_data(ttl=600)
 def run_query(query,expectResult=1):
     with conn.cursor() as cur:
         cur.execute(query)
@@ -82,9 +82,13 @@ def Questions():
 
 def Answers():
     st.title("Answers")
-    st.write("This is the first page of my app.")
 
     if st.button('Refresh data'):
+        rows = run_query("SELECT PET , COUNT(1) NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) ASC;")
+
+        # Display the results in a Streamlit table
+        st.table(rows)
+
         rows = run_query("SELECT * FROM ANSWERS;")
 
         # Display the results in a Streamlit table
