@@ -42,6 +42,8 @@ def main():
         Questions()
     elif choice == "Answers":
         Answers()
+    else:
+        main()
 
     pets = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
