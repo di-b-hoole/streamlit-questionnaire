@@ -46,7 +46,7 @@ def home():
 
     # Execute the query
     cursor = conn.cursor()
-    cursor.execute(query, params)
+    cursor.execute(query)
     conn.commit()
 
     # Close the connection
