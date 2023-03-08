@@ -59,8 +59,7 @@ def Answers():
 
         # Display the results in a Streamlit table
         st.table(rows)
-
-    
+   
 
 def page2():
     st.title("Page 2")
@@ -107,7 +106,7 @@ def page3():
     if gender_val == 'Other':
         gender_val_other = st.text_input("Preferred Gender:")  
 
-    st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other)
+    st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other=none)
 
 if __name__ == "__main__":
     main()
