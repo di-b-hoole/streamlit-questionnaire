@@ -1,5 +1,6 @@
 import streamlit as st
 import snowflake.connector
+import SessionState
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
@@ -63,6 +64,14 @@ def Answers():
 def page2():
     st.title("Page 2")
     st.write("This is the second page of my app.")
+
+    session_state = SessionState.get(user_id=None)
+
+    if session_state.user_id is None:
+        session_state.user_id = st.session_state.session_id
+
+    # Display the user ID
+    st.write(f"Your user ID is: {session_state.user_id}")
 
 if __name__ == "__main__":
     main()
