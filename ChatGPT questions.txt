@@ -1,0 +1,5 @@
+snowflake create question answer table with indentity id
+
+streamlit drop down menu input
+
+insert selected_option into snowflake table
