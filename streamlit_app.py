@@ -7,8 +7,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'www.NoHelpSorry.co.za',
-        'Report a bug': "www.BugsDontExistInMyCode.com",
+        'Get Help': 'https://power-hour-questionnaire.streamlit.app/',
+        'Report a bug': "https://power-hour-questionnaire.streamlit.app/",
         'About': "Chat GPT - Power Hour"
     }
 )
@@ -76,6 +76,15 @@ def Questions():
         
             run_query(query,0)
 
+def Answers():
+    st.title("Answers")
+    st.write("This is the first page of my app.")
+
+    if st.button('Refresh data'):
+        rows = run_query("SELECT * FROM ANSWERS;")
+
+        # Display the results in a Streamlit table
+        st.table(rows)
 
 def home():
     st.title("Welcome to my app!")
@@ -91,16 +100,6 @@ def home():
     if st.button('Submit data'):
             run_query(query,0)
     
-def Answers():
-    st.title("Answers")
-    st.write("This is the first page of my app.")
-
-    if st.button('Refresh data'):
-        rows = run_query("SELECT * FROM ANSWERS;")
-
-        # Display the results in a Streamlit table
-        st.table(rows)
-   
 def page2():
     st.title("Page 2")
     st.write("This is the second page of my app.")
