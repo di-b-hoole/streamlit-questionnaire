@@ -19,7 +19,7 @@ def run_query(query):
 
 
 def main():
-    st.set_page_config(page_title="My Streamlit App")
+    #st.set_page_config(page_title="My Streamlit App")
 
     # Define your menu options here
     menu = ["Home", "Page 1", "Page 2"]
