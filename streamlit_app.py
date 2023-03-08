@@ -44,8 +44,9 @@ def home():
     query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal','{selected_option}')"
 
     # Execute the query
-    run_query(query,0)
-
+    if st.button('Submit data'):
+            run_query(query,0)
+    
 
 def Answers():
     st.title("Answers")
