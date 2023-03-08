@@ -33,12 +33,6 @@ def main():
     elif choice == "Page 2":
         page2()
 
-    
-    rows = run_query("SELECT TOP 5 * FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION;")
-
-    # Display the results in a Streamlit table
-    st.table(rows)
-
 def home():
     st.title("Welcome to my app!")
     st.write("Please select a page from the menu.")
@@ -62,6 +56,11 @@ def home():
 def page1():
     st.title("Page 1")
     st.write("This is the first page of my app.")
+
+    rows = run_query("SELECT TOP 5 * FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION;")
+
+    # Display the results in a Streamlit table
+    st.table(rows)
 
 def page2():
     st.title("Page 2")
