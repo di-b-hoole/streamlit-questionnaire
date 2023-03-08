@@ -27,9 +27,8 @@ def main():
 
     rows = run_query("SELECT TOP 500 * FROM SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.REGION;")
 
-    # Print results.
-    for row in rows:
-        st.write(f"{row[0]} has a :{row[1]}:")
+    # Display the results in a Streamlit table
+    st.table(rows)
 
 def home():
     st.title("Welcome to my app!")
