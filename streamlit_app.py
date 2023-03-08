@@ -1,6 +1,8 @@
 import streamlit as st
 import snowflake.connector
 
+import pandas as pd
+
 st.set_page_config(
     page_title="Chat GPT - Power Hour",
     page_icon="random",
