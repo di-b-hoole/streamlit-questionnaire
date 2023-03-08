@@ -52,10 +52,8 @@ def Answers():
     st.title("Answers")
     st.write("This is the first page of my app.")
 
-    rows = run_query("SELECT * FROM ANSWERS;")
-
     if st.button('Refresh data'):
-        run_query(rows)
+        rows = run_query("SELECT * FROM ANSWERS;")
 
         # Display the results in a Streamlit table
         st.table(rows)
