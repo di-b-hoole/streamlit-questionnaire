@@ -11,11 +11,12 @@ def init_connection():
 
 conn = init_connection()
 
-@st.cache_data(ttl=600)
-def run_query(query):
+#@st.cache_data(ttl=600)
+def run_query(query,expectResult==1):
     with conn.cursor() as cur:
         cur.execute(query)
-        return cur.fetchall()
+        if expectResult != 0:
+            return cur.fetchall()
 
 
 def main():
@@ -44,8 +45,7 @@ def home():
     query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal','{selected_option}')"
 
     # Execute the query
-    run_query(query)
-    conn.commit()
+    run_query(query,0)
 
 
 def Answers():
