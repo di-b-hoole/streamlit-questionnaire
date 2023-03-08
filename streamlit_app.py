@@ -7,9 +7,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
+        'Get Help': 'No help, sorry',
+        'Report a bug': "bugs don't exist!",
+        'About': "Chat GPT - Power Hour"
     }
 )
 
@@ -58,8 +58,8 @@ def Questions():
 
     with st.form("my_form"):
         name_val = st.text_input("Name:")
-        age_val = st.slider('How old are you?', 0, 130, 25)
-        Dog_val = st.number_input('How many Dogs do you have')
+        age_val = st.slider('How old are you?', 20, 100, 25)
+        Dog_val = st.number_input('How many Dogs do you have', min_value=0, max_value=100, value=0, step=1)
         Cat_val = st.number_input('How many Cats do you have')
         Bird_val = st.number_input('How many Birds do you have')
         Fish_val = st.number_input('How many Fish do you have')
@@ -69,20 +69,10 @@ def Questions():
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         
-    if submitted:
-        query = f"""INSERT INTO ANSWERS (NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER) 
-            VALUES (
-                '{name_val}'
-                ,{age_val}
-                ,{Dog_val}
-                ,{Cat_val}
-                ,{Bird_val}
-                ,{Fish_val}
-                ,{Reptile_val}
-                ,'{gender_val}'
-            )"""
+        if submitted:
+            query = f"INSERT INTO ANSWERS (NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER) VALUES ('{name_val}',{age_val},{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},'{gender_val}');"
         
-        run_query(query,0)
+            run_query(query,0)
 
 
 def home():
