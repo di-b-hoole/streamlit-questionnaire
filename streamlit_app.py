@@ -60,7 +60,6 @@ def Fav_Pet():
     if st.button('Submit data'):
         run_query(query,0)
         st.write(favourite_pet)
-        Questions()
 
 def Questions():
     st.title("Please answer the below questions :)")
