@@ -91,7 +91,7 @@ def Answers():
         rows = run_query("SELECT PET , COUNT(1) AS NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
 
         fav_pets_df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
-        fav_pets_df = fav_pets_df.reset_index(drop=True)
+        fav_pets_df = fav_pets_df.set_index('PET')
         st.dataframe(fav_pets_df)
         # Display the results in a Streamlit table
         st.table(fav_pets_df)
