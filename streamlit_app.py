@@ -58,14 +58,16 @@ def main():
 def Questions():
     st.title("Please answer the below questions :)")
 
+    genders = ['Male', 'Female', 'Rather not say']
+
     with st.form("my_form"):
         name_val = st.text_input("Name:")
         age_val = st.slider('How old are you?', 20, 100, 25)
         Dog_val = st.number_input('How many Dogs do you have', min_value=0, max_value=100, value=0, step=1)
-        Cat_val = st.number_input('How many Cats do you have')
-        Bird_val = st.number_input('How many Birds do you have')
-        Fish_val = st.number_input('How many Fish do you have')
-        Reptile_val = st.number_input('How many Reptiles do you have')
+        Cat_val = st.number_input('How many Cats do you have', min_value=0, max_value=100, value=0, step=1)
+        Bird_val = st.number_input('How many Birds do you have', min_value=0, max_value=100, value=0, step=1)
+        Fish_val = st.number_input('How many Fish do you have', min_value=0, max_value=100, value=0, step=1)
+        Reptile_val = st.number_input('How many Reptiles do you have', min_value=0, max_value=100, value=0, step=1)
         gender_val = st.selectbox('Gender:',genders)
 
         # Every form must have a submit button.
