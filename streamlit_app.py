@@ -43,7 +43,6 @@ def main():
     elif choice == "Answers":
         Answers()
 
-
     pets = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
 
@@ -53,6 +52,7 @@ def main():
     # Execute the query
     if st.button('Submit data'):
         run_query(query,0)
+        st.write(favourite_pet)
 
 
 def Questions():
