@@ -38,12 +38,15 @@ def main():
 
     choice = st.sidebar.selectbox("Select a page", menu)
 
-    if choice == "Questions":
+    if choice == "Favourite Pet":
+        Fav_Pet()
+    elif choice == "Questions":
         Questions()
     elif choice == "Answers":
         Answers()
-    else:
-        main()
+
+def Fav_Pet():
+    st.title("Choose your favourite pet")
 
     pets = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
@@ -55,7 +58,6 @@ def main():
     if st.button('Submit data'):
         run_query(query,0)
         st.write(favourite_pet)
-
 
 def Questions():
     st.title("Please answer the below questions :)")
@@ -84,10 +86,15 @@ def Answers():
     st.title("Answers")
 
     if st.button('Refresh data'):
-        rows = run_query("SELECT PET , COUNT(1) NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) ASC;")
+        rows = run_query("SELECT PET , COUNT(1) NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
 
         # Display the results in a Streamlit table
-        st.table(rows)
+        st.table(rows, columns = ['PET','NO_OF_PICKS'])
+        
+        chart_data = pd.DataFrame(rows,columns = ['PET','NO_OF_PICKS'])
+        
+        st.bar_chart(chart_data)
+        
 
         rows = run_query("SELECT * FROM ANSWERS;")
 
