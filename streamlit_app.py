@@ -106,6 +106,10 @@ def Answers():
         # Display the results in a Streamlit table
         st.table(answers_df)
 
+    if st.button('Truncate data'):
+        run_query("TRUNCATE TABLE FAV_PET;", 0)
+        run_query("TRUNCATE TABLE ANSWERS;", 0)
+
 def home():
     st.title("Welcome to my app!")
     st.write("Please select a page from the menu.")
