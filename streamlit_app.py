@@ -41,7 +41,7 @@ def home():
     selected_option = st.selectbox("Select an option", options)
 
     # Define the SQL query and parameters
-    query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal',{selected_option})"
+    query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal','{selected_option}')"
 
 
     # Execute the query
