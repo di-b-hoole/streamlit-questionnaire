@@ -1,5 +1,7 @@
+!pip install snowflake-connector-python
+
 import streamlit as st
-import snowflake.connector
+import snowflake-connector
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
