@@ -44,6 +44,15 @@ def main():
     if st.button('Submit data'):
         run_query(query,0)
 
+        menu = ["Questions", "Answers"]
+
+        choice = st.sidebar.selectbox("Select a page", menu)
+
+        if choice == "Questions":
+            Questions()
+        elif choice == "Answers":
+            Answers()
+
 
 def Questions():
     st.title("Please answer the below questions :)")
