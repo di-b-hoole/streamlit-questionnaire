@@ -90,14 +90,14 @@ def Answers():
     if st.button('Refresh data'):
         rows = run_query("SELECT PET , COUNT(1) AS NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
 
-        df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
+        df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'], index_col=False)
 
         # Display the results in a Streamlit table
         st.table(df)
         
         st.bar_chart(df)
         
-        rows = run_query("SELECT * FROM ANSWERS;")
+        rows = run_query("SELECT * FROM ANSWERS;", columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
 
         # Display the results in a Streamlit table
         st.table(rows)
