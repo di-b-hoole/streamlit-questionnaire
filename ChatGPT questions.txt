@@ -3,3 +3,6 @@ snowflake create table with indentity id and fav_pet string value
 streamlit drop down menu input
 
 insert selected_option into snowflake table
+
+convert snowflake fetchall to dataframe
+pandas bar chart in streamlit
