@@ -90,18 +90,20 @@ def Answers():
     if st.button('Refresh data'):
         rows = run_query("SELECT PET , COUNT(1) AS NO_OF_PICKS FROM FAV_PET GROUP BY PET ORDER BY COUNT(1) DESC;")
 
-        df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
-        df = df.reset_index(drop=True,inplace = True)
+        fav_pets_df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
+        fav_pets_df = fav_pets_df.reset_index(drop=True,inplace = True)
 
         # Display the results in a Streamlit table
-        st.table(df)
+        st.table(fav_pets_df)
         
-        st.bar_chart(df)
+        st.bar_chart(fav_pets_df)
         
         rows = run_query("SELECT * FROM ANSWERS;")
-
+        
+        answers_df = pd.DataFrame(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
+        answers_df = df.reset_index(drop=True,inplace = True)
         # Display the results in a Streamlit table
-        st.table(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
+        st.table(answers_df)
 
 def home():
     st.title("Welcome to my app!")
