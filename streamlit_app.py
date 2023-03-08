@@ -49,9 +49,6 @@ def home():
     cursor.execute(query)
     conn.commit()
 
-    # Close the connection
-    conn.close()
-
 
 def Answers():
     st.title("Answers")
