@@ -64,23 +64,25 @@ def page2():
     st.title("Page 2")
     st.write("This is the second page of my app.")
 
+    genders = ['Male', 'Female', 'Rather not say', 'Other']
+
     with st.form("my_form"):
         st.write("Inside the form")
-        name_val = st.text_input("Name:","Enter your name")
+        name_val = st.text_input("Name:")
         age_val = st.slider('How old are you?', 0, 130, 25)
-        pets_val = st.number_input('Insert a number')
-        gender_val = st.selectbox(
-            'Gender?',
-            ('Male', 'Female', 'Rather not say', 'Other'))
+        pets_val = st.number_input('How many pets do you have')
+        gender_val = st.selectbox('Gender:',genders)
+        
         if gender_val == 'Other':
             gender_val_other = st.text_input("Preferred Gender:")  
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
-        if submitted:
-            st.write(name_val, age_val,pets_val, gender_val,gender_val_other)
+        
+    if submitted:
+        st.write(name_val, age_val,pets_val, gender_val,gender_val_other)
 
-        st.write("Outside the form")
+    st.write("Outside the form")
 
 if __name__ == "__main__":
     main()
