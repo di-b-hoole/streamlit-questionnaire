@@ -34,6 +34,16 @@ def run_query(query,expectResult=1):
 def main():
     st.title("Power Hour 2023-03-08")
     
+    menu = ["Favourite Pet", "Questions", "Answers"]
+
+    choice = st.sidebar.selectbox("Select a page", menu)
+
+    if choice == "Questions":
+        Questions()
+    elif choice == "Answers":
+        Answers()
+
+
     pets = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
 
@@ -43,15 +53,6 @@ def main():
     # Execute the query
     if st.button('Submit data'):
         run_query(query,0)
-
-        menu = ["Questions", "Answers"]
-
-        choice = st.sidebar.selectbox("Select a page", menu)
-
-        if choice == "Questions":
-            Questions()
-        elif choice == "Answers":
-            Answers()
 
 
 def Questions():
