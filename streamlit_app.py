@@ -20,7 +20,6 @@ def run_query(query,expectResult==1):
 
 
 def main():
-    #st.set_page_config(page_title="My Streamlit App")
 
     # Define your menu options here
     menu = ["Home", "Answers", "Page 2"]
@@ -53,6 +52,9 @@ def Answers():
     st.write("This is the first page of my app.")
 
     rows = run_query("SELECT * FROM ANSWERS;")
+
+    if st.button('Refresh data'):
+        run_query(rows)
 
     # Display the results in a Streamlit table
     st.table(rows)
