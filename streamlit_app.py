@@ -92,7 +92,7 @@ def Answers():
 
         fav_pets_df = pd.DataFrame(rows , columns = ['PET','NO_OF_PICKS'])
         fav_pets_df = fav_pets_df.reset_index(drop=True)
-
+        st.dataframe(fav_pets_df)
         # Display the results in a Streamlit table
         st.table(fav_pets_df)
         
