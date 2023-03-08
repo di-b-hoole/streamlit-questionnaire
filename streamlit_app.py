@@ -57,8 +57,10 @@ def Answers():
     if st.button('Refresh data'):
         run_query(rows)
 
-    # Display the results in a Streamlit table
-    st.table(rows)
+        # Display the results in a Streamlit table
+        st.table(rows)
+
+    
 
 def page2():
     st.title("Page 2")
