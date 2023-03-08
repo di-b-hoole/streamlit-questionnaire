@@ -11,7 +11,7 @@ def init_connection():
 
 conn = init_connection()
 
-#@st.cache_data(ttl=600)
+@st.cache_data(ttl=600)
 def run_query(query,expectResult=1):
     with conn.cursor() as cur:
         cur.execute(query)
@@ -66,13 +66,19 @@ def page2():
 
     with st.form("my_form"):
         st.write("Inside the form")
-        slider_val = st.slider("Form slider")
-        checkbox_val = st.checkbox("Form checkbox")
+        name_val = st.text_input("Name:","Enter your name")
+        age_val = st.slider('How old are you?', 0, 130, 25)
+        pets_val = st.number_input('Insert a number')
+        gender_val = st.selectbox(
+            'Gender?',
+            ('Male', 'Female', 'Rather not say', 'Other'))
+        if gender_val == 'Other':
+            gender_val_other = st.text_input("Preferred Gender:")  
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         if submitted:
-            st.write("slider", slider_val, "checkbox", checkbox_val)
+            st.write(name_val, age_val,pets_val, gender_val,gender_val_other)
 
         st.write("Outside the form")
 
