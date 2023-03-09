@@ -34,7 +34,7 @@ def run_query(query,expectResult=1):
 
 
 def main():
-    st.title("Power Hour 2023-03-08")
+    st.title("Power Hour 3023-03-08")
     
     menu = ["Favourite Pet", "Questions", "Answers"]
 
