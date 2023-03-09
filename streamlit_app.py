@@ -47,6 +47,9 @@ def main():
     elif choice == "Answers":
         Answers()
 
+    if st.button('Next Page'):
+        Fav_Pet()
+
 def Fav_Pet():
     st.title("Choose your favourite pet")
 
