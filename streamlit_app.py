@@ -49,6 +49,7 @@ def main():
 
     if st.button('Next Page'):
         Fav_Pet()
+        st.experimental_set_query_params(page=2)
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
