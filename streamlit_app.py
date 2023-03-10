@@ -49,9 +49,9 @@ def main():
     elif choice == "Predictions":
         Predictions()
 
-    if st.button('Next Page'):
-        Fav_Pet()
-        st.experimental_set_query_params(page=2)
+    #if st.button('Next Page'):
+    #    Fav_Pet()
+    #    st.experimental_set_query_params(page=2)
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
@@ -179,10 +179,10 @@ def Predictions():
     results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
     genders = [str(row[0]) for row in results]
 
-    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.LIVING_AREA')
+    results = run_query('SELECT DISTINCT LIVING_AREA from POWER_HOUR.PUBLIC.LIVING_AREA')
     living_area = [str(row[0]) for row in results]
 
-    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.DWELLING_TYPE')
+    results = run_query('SELECT DISTINCT DWELLING_TYPE from POWER_HOUR.PUBLIC.DWELLING_TYPE')
     dwelling_type = [str(row[0]) for row in results]
 
 
