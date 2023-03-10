@@ -36,14 +36,7 @@ def run_query(query,expectResult=1):
 
 def navigation():
     choice = st.session_state.menu
-    if choice == "Favourite Pet":
-        Fav_Pet()
-    elif choice == "Questions":
-        Questions()
-    elif choice == "Answers":
-        Answers()
-    elif choice == "Predictions":
-        Predictions()
+    
 
 def main():
     st.title("Power Hour 2023-03-08")
@@ -57,10 +50,17 @@ def main():
     # Side bar
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
 
-    #choice = st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
-    st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
+    choice = st.sidebar.selectbox("Select a page", menu)
+    #st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
-
+    if choice == "Favourite Pet":
+        Fav_Pet()
+    elif choice == "Questions":
+        Questions()
+    elif choice == "Answers":
+        Answers()
+    elif choice == "Predictions":
+        Predictions()
 
 
 def Fav_Pet():
@@ -182,8 +182,8 @@ def Predictions():
         
         st.write('Gender:',gender_val,gender_val_int)
         st.write('Birth Year:',age_val)
-        st.write('Gender:',living_area_val, living_area_val_int)
-        st.write('Gender:',dwelling_type_val, dwelling_type_val_int)
+        st.write('Living Area:',living_area_val, living_area_val_int)
+        st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
 
         # Streamlit elements
         #st.title('Predictions')
