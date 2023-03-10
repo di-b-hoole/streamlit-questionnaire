@@ -34,33 +34,8 @@ def run_query(query,expectResult=1):
         if expectResult != 0:
             return cur.fetchall()
 
-# Define function to get session state
-def get_state():
-    """Create or get the current SessionState object"""
-    return st.SessionState.name
-
-# Define function to get stored values
-def get_values():
-    """Get the stored values from session state"""
-    state = get_state()
-    return state
-
-def main():
-    st.title("Power Hour 2023-03-08")
-    
-    # Set up initial form to get input values
-    st.write('Please enter your information:')
-    name = st.text_input('Name:', key="name")
-
-    # Store input values in session state
-    state = get_state()
-    state.name = name
-
-    # Side bar
-    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
-
-    choice = st.sidebar.selectbox("Select a page", menu)
-
+def navigation():
+    choice = st.session_state.menu
     if choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
@@ -69,6 +44,22 @@ def main():
         Answers()
     elif choice == "Predictions":
         Predictions()
+
+def main():
+    st.title("Power Hour 2023-03-08")
+    
+    # Set up initial form to get input values
+    st.write('Please enter name:')
+    name = st.text_input('Name:', key="name")
+
+    st.write(st.session_state.name)
+
+    # Side bar
+    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
+
+    #choice = st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
+    st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
+    
 
 
 
