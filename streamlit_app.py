@@ -42,8 +42,8 @@ def main():
     name = st.text_input('Name:', key="name")
 
     # Initialization of session state
-    if 'name' not in st.session_state:
-        st.session_state['name'] = 'TestUser'
+    #if 'name' not in st.session_state:
+    #    st.session_state['name'] = 'TestUser'
 
     # Store input values in session state
     #st.session_state.name = name
