@@ -137,10 +137,10 @@ def prediction_model(birth,dwell,gen,living):
     dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
 
     # Construct dataframe from response
-    data_from_form = {'BIRTH_YEAR': birth,
-                       'DWELLING_TYPE': dwell,
-                       'GENDER':gen,
-                       'LIVING_AREA':living}
+    data_from_form = {1: birth,
+                       2: dwell,
+                       3:gen,
+                       4:living}
     st.write(data_from_form)
     data_from_form = pd.DataFrame(data_from_form)
     st.table(data_from_form)
