@@ -200,7 +200,7 @@ def Predictions():
 
     if submitted:
         
-        gender_val_int = run_query(f"SELECT ID FROM PUBLIC.GENDER WHERE GENDER = '{gender_val}';")
+        gender_val_int = run_query(f"SELECT ID FROM PUBLIC.GENDER WHERE GENDER = '{gender_val}';")[0][0]
         
         st.write(gender_val,gender_val_int,age_val,living_area_val,dwelling_type_val)
 
