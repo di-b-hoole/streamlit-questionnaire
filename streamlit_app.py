@@ -58,18 +58,18 @@ def main():
     menu = ["Main","Favourite Pet", "Questions", "Answers","Predictions"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
-    #st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
     if choice == "Main":
         v = True
     elif choice == "Favourite Pet":
         Fav_Pet()
+    elif choice == "Predictions":
+        Predictions()
     elif choice == "Questions":
         Questions()
     elif choice == "Answers":
         Answers()
-    elif choice == "Predictions":
-        Predictions()
+    
 
 
 def Fav_Pet():
@@ -79,7 +79,7 @@ def Fav_Pet():
     favourite_pet = st.selectbox("Select you favourite pet:", pets)
 
     # Define the SQL query and parameters
-    query = f"INSERT INTO FAV_PET (PET) VALUES ('{favourite_pet}');"
+    query = f"INSERT INTO FAV_PET (NAME,PET) VALUES ('{st.session_state.name}','{favourite_pet}');"
 
     # Execute the query
     if st.button('Submit data'):
