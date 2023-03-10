@@ -1,6 +1,8 @@
 import streamlit as st
 import snowflake.connector
-
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 st.set_page_config(
@@ -59,6 +61,8 @@ def main():
     st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
 
+
+
 def Fav_Pet():
     st.title("Choose your favourite pet")
 
@@ -114,6 +118,37 @@ def Answers():
         # Display the results in a Streamlit table
         st.table(answers_df)
 
+def prediction_model(birth,dwell,gen,living):
+    
+    # Select the columns we want to use for prediction
+    amounts = data[['DOG_AMOUNT', 'CAT_AMOUNT', 'FISH_AMOUNT', 'BIRD_AMOUNT', 'REPTILE_AMOUNT','CAT_IND','DOG_IND','FISH_IND','BIRD_IND','REPTILE_IND']]
+    dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
+
+    # Construct dataframe from form response
+    data_from_form = [{'BIRTH_YEAR': birth,
+                       'DWELLING_TYPE': dwell,
+                       'GENDER':gen,
+                       'LIVING_AREA':living}]
+    # Create a decision tree regression model
+    model = DecisionTreeRegressor() 
+    # Fit the model to the training data
+    st.cache_resource(model.fit(dat, amounts))
+    y_pred = model.predict(data_from_form)
+    for i in y_pred:
+        output_data = i
+
+    #query = f"INSERT INTO ANSWERS (NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER) VALUES ({age_val},{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},'{gender_val}');"
+        
+            #run_query(query,0)
+
+
+    return   f'''Amount of dogs:{output_data[0]}
+                     Amount of cats:{output_data[1]}
+                     Amount of fish:{output_data[2]}
+                     Amount of birds:{output_data[3]}
+                     Amount of reptiles:{output_data[3]}
+                  '''
+
 def Predictions():
     st.title("Prediction")
 
@@ -149,6 +184,14 @@ def Predictions():
         st.write('Birth Year:',age_val)
         st.write('Gender:',living_area_val, living_area_val_int)
         st.write('Gender:',dwelling_type_val, dwelling_type_val_int)
+
+        # Streamlit elements
+        st.title('Predictions')
+        mark_body = 'Based of the information given through we predict the following:'
+        st.write(mark_body)
+        st.write(prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int))
+
+   
 
 def home():
     st.title("Welcome to my app!")
