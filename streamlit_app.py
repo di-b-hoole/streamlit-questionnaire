@@ -186,10 +186,10 @@ def Predictions():
         st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
 
         # Streamlit elements
-        #st.title('Predictions')
-        #mark_body = 'Based of the information given through we predict the following:'
-        #st.write(mark_body)
-        #st.write(prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int))
+        st.title('Predictions')
+        mark_body = 'Based of the information given through we predict the following:'
+        st.write(mark_body)
+        st.write(prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int))
 
    
 
