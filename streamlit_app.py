@@ -34,7 +34,7 @@ def run_query(query,expectResult=1):
 
 
 def main():
-    st.title("Power Hour 2023-03-08")
+    st.title("Power Hour 3023-03-08")
     
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
 
@@ -48,6 +48,10 @@ def main():
         Answers()
     elif choice == "Predictions":
         Predictions()
+
+    if st.button('Next Page'):
+        Fav_Pet()
+        st.experimental_set_query_params(page=2)
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
