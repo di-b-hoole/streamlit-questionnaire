@@ -54,7 +54,7 @@ def main():
     #st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
     if choice == "Main":
-        main()
+        True
     elif choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
