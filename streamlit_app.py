@@ -52,10 +52,10 @@ def main():
     st.write('Please enter name:')
     name = st.text_input('Name:', key="name")
 
-    #st.write(st.session_state.name)
+    st.write(st.session_state.name)
 
     # Side bar
-    menu = ["Main","Favourite Pet", "Questions", "Answers","Predictions"]
+    menu = ["Main","Predictions","Favourite Pet", "Questions", "Answers"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
     
@@ -153,16 +153,15 @@ def prediction_model(birth,dwell,gen,living):
     for i in y_pred:
         output_data = i
 
-    #query = f"INSERT INTO ANSWERS (NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER) VALUES ({age_val},{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},'{gender_val}');"
+    query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES) VALUES ('{st.session_state.name}',{output_data[0]},{output_data[1]},{output_data[3]},{output_data[2]},{output_data[4]},1);"
         
-            #run_query(query,0)
-
+    run_query(query,0)
 
     return   f'''Amount of dogs:{output_data[0]}
                      Amount of cats:{output_data[1]}
                      Amount of fish:{output_data[2]}
                      Amount of birds:{output_data[3]}
-                     Amount of reptiles:{output_data[3]}
+                     Amount of reptiles:{output_data[4]}
                   '''
 
 def Predictions():
