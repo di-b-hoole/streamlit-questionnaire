@@ -46,7 +46,7 @@ def main():
         st.session_state['name'] = 'TestUser'
 
     # Store input values in session state
-    st.session_state.name = name
+    #st.session_state.name = name
 
     st.write(st.session_state.name)
 
