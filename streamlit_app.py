@@ -44,7 +44,7 @@ def run_query(query,expectResult=1):
 def navigation():
     choice = st.session_state.menu
     
-
+st.write('Testing')
 def main():
     st.title("Power Hour 2023-03-08")
     
@@ -117,8 +117,6 @@ def Questions():
             else:
                 st.write("Please enter a Name!")
             
-            
-
 def Answers():
     st.title("Answers")
 
