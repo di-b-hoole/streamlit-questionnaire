@@ -201,8 +201,6 @@ def Predictions():
         st.write(mark_body)
         st.write(prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int))
 
-   
-
 def home():
     st.title("Welcome to my app!")
     st.write("Please select a page from the menu.")
