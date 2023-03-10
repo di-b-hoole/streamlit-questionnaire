@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit import util
 import snowflake.connector
 
 import pandas as pd
@@ -32,10 +33,29 @@ def run_query(query,expectResult=1):
         if expectResult != 0:
             return cur.fetchall()
 
+# Define function to get session state
+def get_state():
+    """Create or get the current SessionState object"""
+    return util.SessionState.get(name='')
+
+# Define function to get stored values
+def get_values():
+    """Get the stored values from session state"""
+    state = get_state()
+    return state.name
 
 def main():
     st.title("Power Hour 3023-03-08")
     
+    # Set up initial form to get input values
+    st.write('Please enter your information:')
+    name = st.text_input('Name:')
+
+    # Store input values in session state
+    state = get_state()
+    state.name = name
+
+    # Side bar
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
@@ -48,10 +68,6 @@ def main():
         Answers()
     elif choice == "Predictions":
         Predictions()
-
-    #if st.button('Next Page'):
-    #    Fav_Pet()
-    #    st.experimental_set_query_params(page=2)
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
@@ -68,19 +84,15 @@ def Fav_Pet():
         st.write(favourite_pet)
 
 def Questions():
-    st.title("Please answer the below questions :)")
-
-    genders = ['Male', 'Female', 'Rather not say']
+    st.title("Please give us the actual values below :)")
 
     with st.form("my_form"):
-        name_val = st.text_input("Name:")
-        age_val = st.slider('How old are you?', 20, 100, 25)
+        
         Dog_val = st.number_input('How many Dogs do you have', min_value=0, max_value=100, value=0, step=1)
         Cat_val = st.number_input('How many Cats do you have', min_value=0, max_value=100, value=0, step=1)
         Bird_val = st.number_input('How many Birds do you have', min_value=0, max_value=100, value=0, step=1)
         Fish_val = st.number_input('How many Fish do you have', min_value=0, max_value=100, value=0, step=1)
         Reptile_val = st.number_input('How many Reptiles do you have', min_value=0, max_value=100, value=0, step=1)
-        gender_val = st.selectbox('Gender:',genders)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
@@ -111,6 +123,42 @@ def Answers():
 
         # Display the results in a Streamlit table
         st.table(answers_df)
+
+def Predictions():
+    st.title("Prediction")
+
+    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
+    genders = [str(row[0]) for row in results]
+
+    results = run_query('SELECT DISTINCT LIVING_AREA from POWER_HOUR.PUBLIC.LIVING_AREA')
+    living_area = [str(row[0]) for row in results]
+
+    results = run_query('SELECT DISTINCT DWELLING_TYPE from POWER_HOUR.PUBLIC.DWELLING_TYPE')
+    dwelling_type = [str(row[0]) for row in results]
+
+    with st.form("Predictions Form"):
+        gender_val = st.selectbox('Gender:',genders)
+        age_val = st.number_input(
+            'Enter your birth year between 1942 and 2004:',
+            min_value=1942,
+            max_value=2004,
+            step=1,
+        )
+        living_area_val = st.selectbox('Living Area:',living_area)
+        dwelling_type_val = st.selectbox('Dwelling Type:',dwelling_type)
+        
+        submitted = st.form_submit_button("Submit")
+
+    if submitted:
+        
+        gender_val_int = run_query(f"SELECT ID FROM PUBLIC.GENDER WHERE GENDER = '{gender_val}';")[0][0]
+        living_area_val_int = run_query(f"SELECT ID FROM PUBLIC.LIVING_AREA WHERE LIVING_AREA = '{living_area_val}';")[0][0]
+        dwelling_type_val_int = run_query(f"SELECT ID FROM PUBLIC.DWELLING_TYPE WHERE DWELLING_TYPE = '{dwelling_type_val}';")[0][0]
+        
+        st.write('Gender:',gender_val,gender_val_int)
+        st.write('Birth Year:',age_val)
+        st.write('Gender:',living_area_val, living_area_val_int)
+        st.write('Gender:',dwelling_type_val, dwelling_type_val_int)
 
 def home():
     st.title("Welcome to my app!")
@@ -172,43 +220,6 @@ def page3():
         gender_val_other = st.text_input("Preferred Gender:")  
 
     st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other=none)
-
-def Predictions():
-    st.title("Prediction")
-
-    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
-    genders = [str(row[0]) for row in results]
-
-    results = run_query('SELECT DISTINCT LIVING_AREA from POWER_HOUR.PUBLIC.LIVING_AREA')
-    living_area = [str(row[0]) for row in results]
-
-    results = run_query('SELECT DISTINCT DWELLING_TYPE from POWER_HOUR.PUBLIC.DWELLING_TYPE')
-    dwelling_type = [str(row[0]) for row in results]
-
-    with st.form("Predictions Form"):
-        gender_val = st.selectbox('Gender:',genders)
-        age_val = st.number_input(
-            'Enter your birth year between 1942 and 2004:',
-            min_value=1942,
-            max_value=2004,
-            step=1,
-        )
-        living_area_val = st.selectbox('Living Area:',living_area)
-        dwelling_type_val = st.selectbox('Dwelling Type:',dwelling_type)
-        
-        submitted = st.form_submit_button("Submit")
-
-    if submitted:
-        
-        gender_val_int = run_query(f"SELECT ID FROM PUBLIC.GENDER WHERE GENDER = '{gender_val}';")[0][0]
-        living_area_val_int = run_query(f"SELECT ID FROM PUBLIC.LIVING_AREA WHERE LIVING_AREA = '{living_area_val}';")[0][0]
-        dwelling_type_val_int = run_query(f"SELECT ID FROM PUBLIC.DWELLING_TYPE WHERE DWELLING_TYPE = '{dwelling_type_val}';")[0][0]
-        
-        st.write('Gender:',gender_val,gender_val_int)
-        st.write('Birth Year:',age_val)
-        st.write('Gender:',living_area_val, living_area_val_int)
-        st.write('Gender:',dwelling_type_val, dwelling_type_val_int)
-
 
 if __name__ == "__main__":
     main()
