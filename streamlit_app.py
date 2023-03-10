@@ -37,15 +37,13 @@ def run_query(query,expectResult=1):
 def main():
     st.title("Power Hour 2023-03-08")
     
-    # Initialization
-    if 'name' not in st.session_state:
-        st.session_state['name'] = 'TestUser'
-
-    
-
     # Set up initial form to get input values
     st.write('Please enter your information:')
     name = st.text_input('Name:', key="name")
+
+    # Initialization of session state
+    if 'name' not in st.session_state:
+        st.session_state['name'] = 'TestUser'
 
     # Store input values in session state
     st.session_state.name = name
