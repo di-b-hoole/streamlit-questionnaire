@@ -34,8 +34,10 @@ def run_query(query,expectResult=1):
 
 # Define function to get session state
 def get_state():
-    """Create or get the current SessionState object"""
-    return st.SessionState.name
+    # Initialization
+    if 'name' not in st.session_state:
+        st.session_state['name'] = 'TestUser'
+    return st.session_state.name
 
 # Define function to get stored values
 def get_values():
@@ -45,7 +47,8 @@ def get_values():
 
 def main():
     st.title("Power Hour 2023-03-08")
-    
+    st.write(st.session_state.name)
+    st.write(get_state())
     # Set up initial form to get input values
     st.write('Please enter your information:')
     name = st.text_input('Name:', key="name")
