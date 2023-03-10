@@ -136,7 +136,7 @@ def prediction_model(birth,dwell,gen,living):
     amounts = data[['DOG_AMOUNT', 'CAT_AMOUNT', 'FISH_AMOUNT', 'BIRD_AMOUNT', 'REPTILE_AMOUNT','CAT_IND','DOG_IND','FISH_IND','BIRD_IND','REPTILE_IND']]
     dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
 
-    # Construct dataframe from form response
+    # Construct dataframe from response
     data_from_form = [{'BIRTH_YEAR': birth,
                        'DWELLING_TYPE': dwell,
                        'GENDER':gen,
