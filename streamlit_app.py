@@ -176,7 +176,7 @@ def prediction_model(birth,dwell,gen,living):
     model.fit(dat, amounts)
     y_pred = model.predict(data_from_form)
     for i in y_pred:
-        output_data = i
+        output_data = round(i)
 
     query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{output_data[0]},{output_data[1]},{output_data[3]},{output_data[2]},{output_data[4]},1);"
         
