@@ -41,7 +41,7 @@ def get_state():
 def get_values():
     """Get the stored values from session state"""
     state = get_state()
-    return state.name
+    return state
 
 def main():
     st.title("Power Hour 2023-03-08")
