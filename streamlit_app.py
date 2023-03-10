@@ -179,9 +179,7 @@ def Predictions():
     results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
 
     # Convert results to a list of strings
-    genders_options = [str(row[0]) for row in results]
-
-    genders = ['Male', 'Female', 'Rather not say', 'Other']
+    genders = [str(row[0]) for row in results]
 
     gender_val = st.selectbox('Gender:',genders)
 
