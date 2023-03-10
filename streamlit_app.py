@@ -32,29 +32,7 @@ def run_query(query,expectResult=1):
         if expectResult != 0:
             return cur.fetchall()
 
-   
-
-def main():
-    st.title("Power Hour 2023-03-08")
-    
-    # Set up initial form to get input values
-    st.write('Please enter your information:')
-    name = st.text_input('Name:', key="name")
-
-    # Initialization of session state
-    #if 'name' not in st.session_state:
-    #    st.session_state['name'] = 'TestUser'
-
-    # Store input values in session state
-    #st.session_state.name = name
-
-    st.write(st.session_state.name)
-
-    # Side bar
-    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
-
-    choice = st.sidebar.selectbox("Select a page", menu)
-
+def navigation(choice):
     if choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
@@ -63,6 +41,22 @@ def main():
         Answers()
     elif choice == "Predictions":
         Predictions()
+
+def main():
+    st.title("Power Hour 2023-03-08")
+    
+    # Set up initial form to get input values
+    st.write('Please enter name:')
+    name = st.text_input('Name:', key="name")
+
+    st.write(st.session_state.name)
+
+    # Side bar
+    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
+
+    choice = st.sidebar.selectbox("Select a page", menu, on_change=navigation())
+
+    
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
