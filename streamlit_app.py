@@ -32,7 +32,8 @@ def run_query(query,expectResult=1):
         if expectResult != 0:
             return cur.fetchall()
 
-def navigation(choice):
+def navigation():
+    choice = st.session_state.text_key
     if choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
@@ -54,8 +55,8 @@ def main():
     # Side bar
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
 
-    choice = st.sidebar.selectbox("Select a page", menu, on_change=navigation())
-
+    #choice = st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
+    st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
 
 def Fav_Pet():
