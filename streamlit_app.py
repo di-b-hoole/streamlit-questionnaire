@@ -39,23 +39,18 @@ def get_state():
         st.session_state['name'] = 'TestUser'
     return st.session_state.name
 
-# Define function to get stored values
-def get_values():
-    """Get the stored values from session state"""
-    state = get_state()
-    return state
-
 def main():
     st.title("Power Hour 2023-03-08")
+    
     st.write(st.session_state.name)
     st.write(get_state())
+
     # Set up initial form to get input values
     st.write('Please enter your information:')
     name = st.text_input('Name:', key="name")
 
     # Store input values in session state
-    state = get_state()
-    state.name = name
+    st.session_state.name = name
 
     # Side bar
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
