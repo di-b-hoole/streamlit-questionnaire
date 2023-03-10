@@ -145,7 +145,7 @@ def Answers():
         answers_df = pd.DataFrame(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','IS_PREDICTION'])
 
         # Display the results in a Streamlit table
-        st.table(answers_df)
+        st.table(rows)
 
 def prediction_model(birth,dwell,gen,living):
     
