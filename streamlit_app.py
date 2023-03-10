@@ -153,7 +153,7 @@ def prediction_model(birth,dwell,gen,living):
     for i in y_pred:
         output_data = i
 
-    query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES) VALUES ('{st.session_state.name}',{output_data[0]},{output_data[1]},{output_data[3]},{output_data[2]},{output_data[4]},1);"
+    query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{output_data[0]},{output_data[1]},{output_data[3]},{output_data[2]},{output_data[4]},1);"
         
     run_query(query,0)
 
@@ -199,6 +199,10 @@ def Predictions():
         st.write('Birth Year:',age_val)
         st.write('Living Area:',living_area_val, living_area_val_int)
         st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
+
+        query = f"INSERT INTO DEMOGRAPHICS (NAME,GENDER,LIVING_AREA,DWELLING_TYPE,BIRTH_YEAR) VALUES ('{st.session_state.name}',{gender_val},{living_area_val},{dwelling_type_val},{age_val});"
+        
+        run_query(query,0)
 
         # Streamlit elements
         st.title('Predictions')
