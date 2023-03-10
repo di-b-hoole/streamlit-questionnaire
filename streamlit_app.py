@@ -140,9 +140,9 @@ def Answers():
         # Display the results in a Streamlit bar chart
         st.bar_chart(fav_pets_df)
         
-        rows = run_query("SELECT ID,NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER FROM ANSWERS;")
+        rows = run_query("SELECT ID,NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION FROM ANSWERS;")
         
-        answers_df = pd.DataFrame(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','GENDER'])
+        answers_df = pd.DataFrame(rows, columns = ['ID','NAME','AGE','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','IS_PREDICTION'])
 
         # Display the results in a Streamlit table
         st.table(answers_df)
