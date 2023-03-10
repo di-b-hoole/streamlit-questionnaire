@@ -48,12 +48,14 @@ def main():
     st.write(st.session_state.name)
 
     # Side bar
-    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
+    menu = ["Main","Favourite Pet", "Questions", "Answers","Predictions"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
     #st.sidebar.selectbox("Select a page", menu, on_change=navigation, key='menu')
     
-    if choice == "Favourite Pet":
+    if choice == "Main":
+        main()
+    elif choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
         Questions()
