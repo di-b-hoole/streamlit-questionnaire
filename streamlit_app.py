@@ -55,7 +55,7 @@ def main():
     st.write(st.session_state.name)
 
     # Side bar
-    menu = ["Main","Predictions","Favourite Pet", "Questions", "Answers"]
+    menu = ["Main","Predictions","Favourite Pet", "Actuals", "Answers"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
     
@@ -65,7 +65,7 @@ def main():
         Fav_Pet()
     elif choice == "Predictions":
         Predictions()
-    elif choice == "Questions":
+    elif choice == "Actuals":
         Questions()
     elif choice == "Answers":
         Answers()
@@ -104,9 +104,20 @@ def Questions():
         submitted = st.form_submit_button("Submit")
         
         if submitted:
-            query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},0);"
+            if 'name' in st.session_state:
+                query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},0);"
         
-            run_query(query,0)
+                run_query(query,0)
+
+                st.write('Amount of Dogs:',Dog_val)
+                st.write('Amount of Cats:',Cat_val)
+                st.write('Amount of Fish:',Fish_val)
+                st.write('Amount of Birds:',Bird_val)
+                st.write('Amount of Reptiles:',Reptile_val)
+            else:
+                st.write("Please enter a Name!")
+            
+            
 
 def Answers():
     st.title("Answers")
