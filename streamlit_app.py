@@ -140,12 +140,20 @@ def Answers():
         # Display the results in a Streamlit bar chart
         st.bar_chart(fav_pets_df)
         
-        rows = run_query("SELECT ID,NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION FROM ANSWERS;")
+        rows = run_query("SELECT ID,NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION FROM ANSWERS WHERE IS_PREDICTION = 1;")
         
         answers_df = pd.DataFrame(rows, columns = ['ID','NAME','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','IS_PREDICTION'])
         #answers_df = answers_df.set_index('ID')
         # Display the results in a Streamlit table
+        st.title('Predictions')
         st.table(answers_df)
+
+        ans_rows = run_query("SELECT ID,NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION FROM ANSWERS WHERE IS_PREDICTION = 0;")
+        
+        answers_df_ans = pd.DataFrame(ans_rows, columns = ['ID','NAME','NO_DOGS','NO_CATS','NO_BIRDS','NO_FISH','NO_REPTILES','IS_PREDICTION'])
+
+        st.title('Answers')
+        st.table(answers_df_ans)
 
 def prediction_model(birth,dwell,gen,living):
     
