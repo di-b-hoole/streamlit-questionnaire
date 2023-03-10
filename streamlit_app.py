@@ -177,14 +177,21 @@ def Predictions():
     st.title("Prediction")
 
     results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
-
-    # Convert results to a list of strings
     genders = [str(row[0]) for row in results]
 
+    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.LIVING_AREA')
+    living_area = [str(row[0]) for row in results]
+
+    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.DWELLING_TYPE')
+    dwelling_type = [str(row[0]) for row in results]
+
+
     gender_val = st.selectbox('Gender:',genders)
+    living_area_val = st.selectbox('Living Area:',living_area)
+    dwelling_type_val = st.selectbox('Dwelling Type:',dwelling_type)
 
 
-    st.write(gender_val)
+    st.write(gender_val,living_area_val,dwelling_type_val)
 
 
 if __name__ == "__main__":
