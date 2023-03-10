@@ -43,8 +43,18 @@ def run_query(query,expectResult=1):
 
 def navigation():
     choice = st.session_state.menu
+
+    if choice == "Main":
+        v = True
+    elif choice == "Favourite Pet":
+        Fav_Pet()
+    elif choice == "Predictions":
+        Predictions()
+    elif choice == "Actuals":
+        Questions()
+    elif choice == "Answers":
+        Answers()
     
-st.write('Testing')
 def main():
     st.title("Power Hour 2023-03-08")
     
@@ -70,8 +80,6 @@ def main():
     elif choice == "Answers":
         Answers()
     
-
-
 def Fav_Pet():
     st.title("Choose your favourite pet")
 
@@ -225,67 +233,6 @@ def Predictions():
         st.write('Amount of Fish:',prediction[2])
         st.write('Amount of Birds:',prediction[3])
         st.write('Amount of Reptiles:',prediction[4])
-
-def home():
-    st.title("Welcome to my app!")
-    st.write("Please select a page from the menu.")
-
-    options = ["Dog", "Cat", "Bird", "Fish", "Reptile"]
-    selected_option = st.selectbox("Select an option", options)
-
-    # Define the SQL query and parameters
-    query = f"INSERT INTO ANSWERS (Question, answer) VALUES ('What is your favourite animal','{selected_option}')"
-
-    # Execute the query
-    if st.button('Submit data'):
-            run_query(query,0)
-    
-def page2():
-    st.title("Page 2")
-    st.write("This is the second page of my app.")
-
-    genders = ['Male', 'Female', 'Rather not say', 'Other']
-
-    with st.form("my_form"):
-        st.write("Inside the form")
-        name_val = st.text_input("Name:")
-        age_val = st.slider('How old are you?', 0, 130, 25)
-        Dog_val = st.number_input('How many Dogs do you have')
-        Cat_val = st.number_input('How many Cats do you have')
-        Bird_val = st.number_input('How many Birds do you have')
-        Fish_val = st.number_input('How many Fish do you have')
-        Reptile_val = st.number_input('How many Reptiles do you have')
-        gender_val = st.selectbox('Gender:',genders)
-        
-        if gender_val == 'Other':
-            gender_val_other = st.text_input("Preferred Gender:")  
-
-        # Every form must have a submit button.
-        submitted = st.form_submit_button("Submit")
-        
-    if submitted:
-        st.write(name_val, age_val,pets_val, gender_val,gender_val_other)
-
-    st.write("Outside the form")
-
-def page3():
-    st.title("Page 3")
-
-    genders = ['Male', 'Female', 'Rather not say', 'Other']
-
-    name_val = st.text_input("Name:")
-    age_val = st.slider('How old are you?', 0, 130, 25)
-    Dog_val = st.number_input('How many Dogs do you have')
-    Cat_val = st.number_input('How many Cats do you have')
-    Bird_val = st.number_input('How many Birds do you have')
-    Fish_val = st.number_input('How many Fish do you have')
-    Reptile_val = st.number_input('How many Reptiles do you have')
-    gender_val = st.selectbox('Gender:',genders)
-        
-    if gender_val == 'Other':
-        gender_val_other = st.text_input("Preferred Gender:")  
-
-    st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other=none)
 
 if __name__ == "__main__":
     main()
