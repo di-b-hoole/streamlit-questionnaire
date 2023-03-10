@@ -82,12 +82,12 @@ def Fav_Pet():
     query = f"INSERT INTO FAV_PET (NAME,PET) VALUES ('{st.session_state.name}','{favourite_pet}');"
 
     # Execute the query
-    if st.button('Submit data') and 'name' not in st.session_state:
-        
-        run_query(query,0)
-        st.write(favourite_pet)
-    else:
-        st.write("Please enter a Name!")
+    if st.button('Submit data'):
+        if 'name' in st.session_state:
+            run_query(query,0)
+            st.write(favourite_pet)
+        else:
+            st.write("Please enter a Name!")
 
 def Questions():
     st.title("Please give us the actual values below :)")
