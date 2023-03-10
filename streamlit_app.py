@@ -104,7 +104,7 @@ def Questions():
         submitted = st.form_submit_button("Submit")
         
         if submitted:
-            query = f"INSERT INTO ANSWERS (NAME,AGE,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,GENDER) VALUES ('{name_val}',{age_val},{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},'{gender_val}');"
+            query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{Dog_val},{Cat_val},{Bird_val},{Fish_val},{Reptile_val},0);"
         
             run_query(query,0)
 
@@ -196,10 +196,10 @@ def Predictions():
         living_area_val_int = run_query(f"SELECT ID FROM PUBLIC.LIVING_AREA WHERE LIVING_AREA = '{living_area_val}';")[0][0]
         dwelling_type_val_int = run_query(f"SELECT ID FROM PUBLIC.DWELLING_TYPE WHERE DWELLING_TYPE = '{dwelling_type_val}';")[0][0]
         
-        st.write('Gender:',gender_val,gender_val_int)
-        st.write('Birth Year:',age_val)
-        st.write('Living Area:',living_area_val, living_area_val_int)
-        st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
+        #st.write('Gender:',gender_val,gender_val_int)
+        #st.write('Birth Year:',age_val)
+        #st.write('Living Area:',living_area_val, living_area_val_int)
+        #st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
 
         query = f"INSERT INTO DEMOGRAPHICS (NAME,GENDER,LIVING_AREA,DWELLING_TYPE,BIRTH_YEAR) VALUES ('{st.session_state.name}','{gender_val}','{living_area_val}','{dwelling_type_val}',{age_val});"
         
