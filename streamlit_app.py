@@ -36,7 +36,7 @@ def run_query(query,expectResult=1):
 def main():
     st.title("Power Hour 2023-03-08")
     
-    menu = ["Favourite Pet", "Questions", "Answers"]
+    menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
 
     choice = st.sidebar.selectbox("Select a page", menu)
 
@@ -46,6 +46,8 @@ def main():
         Questions()
     elif choice == "Answers":
         Answers()
+    elif choice == "Predictions":
+        Predictions()
 
 def Fav_Pet():
     st.title("Choose your favourite pet")
@@ -166,6 +168,22 @@ def page3():
         gender_val_other = st.text_input("Preferred Gender:")  
 
     st.write(name_val, age_val,Dog_val,Cat_val,Bird_val,Fish_val,Reptile_val, gender_val,gender_val_other=none)
+
+def Predictions():
+    st.title("Prediction")
+
+    results = run_query('SELECT DISTINCT GENDER from POWER_HOUR.PUBLIC.GENDER')
+
+    # Convert results to a list of strings
+    genders_options = [str(row[0]) for row in results]
+
+    genders = ['Male', 'Female', 'Rather not say', 'Other']
+
+    gender_val = st.selectbox('Gender:',genders)
+
+
+    st.write(gender_val)
+
 
 if __name__ == "__main__":
     main()

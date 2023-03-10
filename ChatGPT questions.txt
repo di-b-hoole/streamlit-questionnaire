@@ -7,6 +7,6 @@ insert selected_option into snowflake table
 convert snowflake fetchall to dataframe
 pandas bar chart in streamlit
 
-PowerBI count rows in tbale 
+PowerBI count rows in table 
 
 Powerbi measure to show user with most pets
