@@ -131,7 +131,7 @@ def prediction_model(birth,dwell,gen,living):
     
     # pull data from snowflake
     data = run_query('select * from POWER_HOUR.PUBLIC.TRANSFORMED_HIST_NEW where dwelling_type is not null and gender is not null  and living_area is not null',2)
-    st.table(data)
+    
     # Select the columns we want to use for prediction
     amounts = data[['DOG_AMOUNT', 'CAT_AMOUNT', 'FISH_AMOUNT', 'BIRD_AMOUNT', 'REPTILE_AMOUNT','CAT_IND','DOG_IND','FISH_IND','BIRD_IND','REPTILE_IND']]
     dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
@@ -144,7 +144,7 @@ def prediction_model(birth,dwell,gen,living):
     # Create a decision tree regression model
     model = DecisionTreeRegressor() 
     # Fit the model to the training data
-    st.cache_resource(model.fit(dat, amounts))
+    model.fit(dat, amounts)
     y_pred = model.predict(data_from_form)
     for i in y_pred:
         output_data = i
