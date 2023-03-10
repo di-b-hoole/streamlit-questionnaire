@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit import util
 import snowflake.connector
 
 import pandas as pd
@@ -36,7 +35,7 @@ def run_query(query,expectResult=1):
 # Define function to get session state
 def get_state():
     """Create or get the current SessionState object"""
-    return util.SessionState.get(name='')
+    return st.SessionState.name
 
 # Define function to get stored values
 def get_values():
@@ -45,11 +44,11 @@ def get_values():
     return state.name
 
 def main():
-    st.title("Power Hour 3023-03-08")
+    st.title("Power Hour 2023-03-08")
     
     # Set up initial form to get input values
     st.write('Please enter your information:')
-    name = st.text_input('Name:')
+    name = st.text_input('Name:', key="name")
 
     # Store input values in session state
     state = get_state()
