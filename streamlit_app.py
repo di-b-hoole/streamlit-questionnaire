@@ -157,12 +157,13 @@ def prediction_model(birth,dwell,gen,living):
         
     run_query(query,0)
 
-    return   f'''Amount of dogs:{output_data[0]}
-                     Amount of cats:{output_data[1]}
-                     Amount of fish:{output_data[2]}
-                     Amount of birds:{output_data[3]}
-                     Amount of reptiles:{output_data[4]}
-                  '''
+    return [output_data[0],output_data[1],output_data[2],output_data[3],output_data[4]]
+                #f''' Amount of  dogs:{output_data[0]}
+                #     Amount of cats:{output_data[1]}
+                #     Amount of fish:{output_data[2]}
+                #     Amount of birds:{output_data[3]}
+                #     Amount of reptiles:{output_data[4]}
+                # '''
 
 def Predictions():
     st.title("Prediction")
@@ -208,7 +209,13 @@ def Predictions():
         st.title('Predictions')
         mark_body = 'Based of the information given through we predict the following:'
         st.write(mark_body)
-        st.write(prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int))
+        prediction = prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int)
+
+        st.write('Amount of Dogs:',prediction[0])
+        st.write('Amount of Cats:',prediction[1])
+        st.write('Amount of Fish:',prediction[2])
+        st.write('Amount of Birds:',prediction[3])
+        st.write('Amount of Reptiles:',prediction[4])
 
 def home():
     st.title("Welcome to my app!")
