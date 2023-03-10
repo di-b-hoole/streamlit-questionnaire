@@ -199,7 +199,10 @@ def Predictions():
         submitted = st.form_submit_button("Submit")
 
     if submitted:
-        st.write(gender_val,age_val,living_area_val,dwelling_type_val)
+        
+        gender_val_int = run_query(f"SELECT ID FROM PUBLIC.GENDER WHERE GENDER = '{gender_val}';")
+        
+        st.write(gender_val,gender_val_int,age_val,living_area_val,dwelling_type_val)
 
 
 if __name__ == "__main__":
