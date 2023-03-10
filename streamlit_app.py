@@ -137,10 +137,11 @@ def prediction_model(birth,dwell,gen,living):
     dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
 
     # Construct dataframe from response
-    data_from_form = [{'BIRTH_YEAR': birth,
+    data_from_form = {'BIRTH_YEAR': birth,
                        'DWELLING_TYPE': dwell,
                        'GENDER':gen,
-                       'LIVING_AREA':living}]
+                       'LIVING_AREA':living}
+    data_from_form = pd.DataFrame(data_from_form)
     # Create a decision tree regression model
     model = DecisionTreeRegressor() 
     # Fit the model to the training data
