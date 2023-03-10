@@ -200,7 +200,7 @@ def Predictions():
         st.write('Living Area:',living_area_val, living_area_val_int)
         st.write('Dwelling Type:',dwelling_type_val, dwelling_type_val_int)
 
-        query = f"INSERT INTO DEMOGRAPHICS (NAME,GENDER,LIVING_AREA,DWELLING_TYPE,BIRTH_YEAR) VALUES ('{st.session_state.name}',{gender_val},{living_area_val},{dwelling_type_val},{age_val});"
+        query = f"INSERT INTO DEMOGRAPHICS (NAME,GENDER,LIVING_AREA,DWELLING_TYPE,BIRTH_YEAR) VALUES ('{st.session_state.name}','{gender_val}','{living_area_val}','{dwelling_type_val}',{age_val});"
         
         run_query(query,0)
 
