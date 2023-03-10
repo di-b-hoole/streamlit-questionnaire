@@ -185,13 +185,21 @@ def Predictions():
     results = run_query('SELECT DISTINCT DWELLING_TYPE from POWER_HOUR.PUBLIC.DWELLING_TYPE')
     dwelling_type = [str(row[0]) for row in results]
 
+    with st.form("Predictions Form"):
+        gender_val = st.selectbox('Gender:',genders)
+        age_val = st.number_input(
+            'Enter your birth year between 1942 and 2004:',
+            min_value=1942,
+            max_value=2004,
+            step=1,
+        )
+        living_area_val = st.selectbox('Living Area:',living_area)
+        dwelling_type_val = st.selectbox('Dwelling Type:',dwelling_type)
+        
+        submitted = st.form_submit_button("Submit")
 
-    gender_val = st.selectbox('Gender:',genders)
-    living_area_val = st.selectbox('Living Area:',living_area)
-    dwelling_type_val = st.selectbox('Dwelling Type:',dwelling_type)
-
-
-    st.write(gender_val,living_area_val,dwelling_type_val)
+    if submitted:
+        st.write(gender_val,age_val,living_area_val,dwelling_type_val)
 
 
 if __name__ == "__main__":
