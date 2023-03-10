@@ -33,7 +33,7 @@ def run_query(query,expectResult=1):
             return cur.fetchall()
 
 def navigation():
-    choice = st.session_state.text_key
+    choice = st.session_state.menu
     if choice == "Favourite Pet":
         Fav_Pet()
     elif choice == "Questions":
