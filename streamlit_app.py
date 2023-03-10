@@ -32,18 +32,16 @@ def run_query(query,expectResult=1):
         if expectResult != 0:
             return cur.fetchall()
 
-# Define function to get session state
-def get_state():
-    # Initialization
-    if 'name' not in st.session_state:
-        st.session_state['name'] = 'TestUser'
-    return st.session_state.name
+   
 
 def main():
     st.title("Power Hour 2023-03-08")
     
-    st.write(st.session_state.name)
-    st.write(get_state())
+    # Initialization
+    if 'name' not in st.session_state:
+        st.session_state['name'] = 'TestUser'
+
+    
 
     # Set up initial form to get input values
     st.write('Please enter your information:')
@@ -51,6 +49,8 @@ def main():
 
     # Store input values in session state
     st.session_state.name = name
+
+    st.write(st.session_state.name)
 
     # Side bar
     menu = ["Favourite Pet", "Questions", "Answers","Predictions"]
