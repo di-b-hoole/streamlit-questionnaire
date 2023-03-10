@@ -176,7 +176,7 @@ def prediction_model(birth,dwell,gen,living):
     model.fit(dat, amounts)
     y_pred = model.predict(data_from_form)
     for i in y_pred:
-        output_data = round(i)
+        output_data = i
 
     query = f"INSERT INTO ANSWERS (NAME,NO_DOGS,NO_CATS,NO_BIRDS,NO_FISH,NO_REPTILES,IS_PREDICTION) VALUES ('{st.session_state.name}',{output_data[0]},{output_data[1]},{output_data[3]},{output_data[2]},{output_data[4]},1);"
         
@@ -236,11 +236,11 @@ def Predictions():
         st.write(mark_body)
         prediction = prediction_model(age_val,dwelling_type_val_int,gender_val_int,living_area_val_int)
 
-        st.write('Amount of Dogs:',prediction[0])
-        st.write('Amount of Cats:',prediction[1])
-        st.write('Amount of Fish:',prediction[2])
-        st.write('Amount of Birds:',prediction[3])
-        st.write('Amount of Reptiles:',prediction[4])
+        st.write('Amount of Dogs:',round(prediction[0]))
+        st.write('Amount of Cats:',round(prediction[1]))
+        st.write('Amount of Fish:',round(prediction[2]))
+        st.write('Amount of Birds:',round(prediction[3]))
+        st.write('Amount of Reptiles:',round(prediction[4]))
 
 if __name__ == "__main__":
     main()
