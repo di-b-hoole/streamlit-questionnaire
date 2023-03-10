@@ -31,14 +31,15 @@ conn = init_connection()
 def run_query(query,expectResult=1):
     with conn.cursor() as cur:
         cur.execute(query)
-        if expectResult != 0:
-            return cur.fetchall()
+        
         if expectResult == 2:
             # Get the column headers
             headers = [desc[0] for desc in cur.description]
             results = cur.fetchall()
             df = pd.DataFrame(results, columns=headers)
             return df
+        if expectResult != 0:
+            return cur.fetchall()
 
 def navigation():
     choice = st.session_state.menu
