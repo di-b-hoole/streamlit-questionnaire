@@ -52,7 +52,7 @@ def main():
     st.write('Please enter name:')
     name = st.text_input('Name:', key="name")
 
-    st.write(st.session_state.name)
+    #st.write(st.session_state.name)
 
     # Side bar
     menu = ["Main","Favourite Pet", "Questions", "Answers","Predictions"]
@@ -82,9 +82,12 @@ def Fav_Pet():
     query = f"INSERT INTO FAV_PET (NAME,PET) VALUES ('{st.session_state.name}','{favourite_pet}');"
 
     # Execute the query
-    if st.button('Submit data'):
+    if st.button('Submit data') and st.session_state.name!=None:
+
         run_query(query,0)
         st.write(favourite_pet)
+    else:
+        st.write("Please enter a Name!")
 
 def Questions():
     st.title("Please give us the actual values below :)")
@@ -137,13 +140,11 @@ def prediction_model(birth,dwell,gen,living):
     dat = data[['BIRTH_YEAR','DWELLING_TYPE','GENDER','LIVING_AREA']]
 
     # Construct dataframe from response
-    data_from_form = {1: [birth],
-                       2: [dwell],
-                       3:[gen],
-                       4:[living]}
-    st.write(data_from_form)
+    data_from_form = { 'BIRTH_YEAR': [birth],
+                       'DWELLING_TYPE': [dwell],
+                       'GENDER':[gen],
+                       'LIVING_AREA':[living]}
     data_from_form = pd.DataFrame(data_from_form)
-    st.table(data_from_form)
     # Create a decision tree regression model
     model = DecisionTreeRegressor() 
     # Fit the model to the training data
